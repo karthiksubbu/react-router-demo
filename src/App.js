@@ -3,28 +3,32 @@ import { Route, Link } from 'react-router-dom';
 
 import './App.css';
 
-const HomePage = props => {
+const HomePage = (props) => {
   console.log(props);
   return (
     <div>
-      <button onClick={() => props.history.push('/topics')}>Topics </button>
+      <Link to={`/topics`}>Topics</Link>
       <h1>HOME PAGE</h1>
     </div>
   );
 };
 
-const TopicsList = props => {
+const TopicsList = (props) => {
   return (
     <div>
       <h1>TOPIC LIST PAGE</h1>
       <Link to={`${props.match.url}/13`}>TO TOPIC 13</Link>
+      <br />
+      <br />
       <Link to={`${props.match.url}/17`}>TO TOPIC 17</Link>
+      <br />
+      <br />
       <Link to={`${props.match.url}/21`}>TO TOPIC 21</Link>
     </div>
   );
 };
 
-const TopicDetail = props => {
+const TopicDetail = (props) => {
   return (
     <div>
       <h1>TOPIC DETAIL PAGE: {props.match.params.topicId}</h1>
@@ -36,6 +40,8 @@ function App() {
   return (
     <div>
       <Route exact path='/' component={HomePage} />
+      <Route exact path='/topics' component={TopicsList} />
+      <Route path='/topics/:topicId' component={TopicDetail} />
       <Route exact path='/blog/asdqw/topics' component={TopicsList} />
       <Route path='/blog/asdqw/topics/:topicId' component={TopicDetail} />
       <Route exact path='/blog/topics' component={TopicsList} />
